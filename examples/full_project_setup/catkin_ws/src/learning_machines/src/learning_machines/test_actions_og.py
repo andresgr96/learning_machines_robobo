@@ -9,14 +9,7 @@ from robobo_interface import (
     SoundEmotion,
     SimulationRobobo,
     HardwareRobobo,
-    Position,
-    Orientation,
 )
-
-
-
-from learning_machines import task_0
-# from learning_machines import task_1
 
 
 def test_emotions(rob: IRobobo):
@@ -31,16 +24,6 @@ def test_move_and_wheel_reset(rob: IRobobo):
     print("before reset: ", rob.read_wheels())
     rob.reset_wheels()
     rob.sleep(1)
-    print("after reset: ", rob.read_wheels())
-
-
-
-def test_move_and_wheel_reset22(rob: IRobobo):
-    rob.move_blocking(50000, 100, 1000)
-    print("\n\n\n\n#############\n\n")
-    print("before reset: ", rob.read_wheels())
-    rob.reset_wheels()
-    rob.sleep(2)
     print("after reset: ", rob.read_wheels())
 
 
@@ -77,57 +60,12 @@ def test_hardware(rob: HardwareRobobo):
     print("Robot battery level: ", rob.read_robot_battery())
 
 
-# def run_all_actions(rob: IRobobo):
-#     if isinstance(rob, SimulationRobobo):
-#         rob.play_simulation()
-#     test_emotions(rob)
-#     test_sensors(rob)
-#     test_move_and_wheel_reset(rob)
-
-#     test_move_and_wheel_reset22(rob)
-
-
-#     if isinstance(rob, SimulationRobobo):
-#         test_sim(rob)
-
-#     if isinstance(rob, HardwareRobobo):
-#         test_hardware(rob)
-
-#     test_phone_movement(rob)
-
-#     if isinstance(rob, SimulationRobobo):
-#         rob.stop_simulation()
-
-
-
-
-
-# def run_task(rob):
-
-#     start_position = Position(x=0, y=0, z=0.0)  # Set the starting position
-#     start_orientation = Orientation(yaw=-175, pitch=-20, roll=90)  # Set the starting orientation
-#     target_position = Position(x=1.5, y=1.5, z=0.0)  # Set the target position
-
-#     try:
-#         best_path = task_1.evolutionary_algorithm(rob, start_position, start_orientation, target_position)
-#         print("Best Path:", best_path)
-#     finally:
-#         rob.stop_simulation()  # Stop the simulation when done
-
-
-
-
 def run_all_actions(rob: IRobobo):
     if isinstance(rob, SimulationRobobo):
         rob.play_simulation()
-
-    task_0.avoid_obstacle(rob)
-    # task_0.touch_wall_backup(rob)
-
-    # run_task(rob)
-
-
-
+    test_emotions(rob)
+    test_sensors(rob)
+    test_move_and_wheel_reset(rob)
     if isinstance(rob, SimulationRobobo):
         test_sim(rob)
 
@@ -138,16 +76,3 @@ def run_all_actions(rob: IRobobo):
 
     if isinstance(rob, SimulationRobobo):
         rob.stop_simulation()
-
-
-
-# if __name__ == "__main__":
-#     robobo = SimulationRobobo()  # Initialize your simulation robot
-#     robobo.play_simulation()  # Start the simulation
-
-#     target_position = Position(x=10.0, y=10.0, z=0.0)  # Set the target position
-#     try:
-#         best_path = evolutionary_algorithm(robobo, target_position)
-#         print("Best Path:", best_path)
-#     finally:
-#         robobo.stop_simulation()  # Stop the simulation when done
